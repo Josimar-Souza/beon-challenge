@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import BooksAPI from '../../api/booksAPI';
 import TableRow from '../../components/TableRow';
+import SearchFilter from '../../components/SearchFilter';
 import {
   MainSection,
   BooksTable,
@@ -39,6 +40,7 @@ function MainPage() {
         inputValue={searchTerm}
         onSearchButtonClick={onSearchButtonClick}
       />
+      <SearchFilter />
       <BooksTable>
         <tbody>
           <tr>
