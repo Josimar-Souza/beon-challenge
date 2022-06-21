@@ -5,11 +5,13 @@ import {
   SearchContainer,
   SearchIcon,
   SearchInput,
+  BeonLogo,
 } from './headerStyles';
 
 function Header() {
   return (
     <HeaderContainer>
+      <BeonLogo>beon</BeonLogo>
       <SearchContainer>
         <SearchIcon src={searchIcon} alt="Icone de busca" />
         <SearchInput
