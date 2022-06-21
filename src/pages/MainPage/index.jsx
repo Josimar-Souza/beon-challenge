@@ -12,7 +12,7 @@ import {
 const booksAPI = new BooksAPI('http://localhost:4000');
 
 function MainPage() {
-  const [searchFilter, setSearchFilter] = useState({ term: '', minYear: 0, maxYear: 0 });
+  const [searchFilter, setSearchFilter] = useState({ term: '', minYear: '0', maxYear: '0' });
   const [books, setBooks] = useState([]);
   const [resultCount, setResultCount] = useState(0);
 
@@ -32,7 +32,20 @@ function MainPage() {
   };
 
   const onSearchButtonClick = async () => {
-    const booksFetched = await booksAPI.getSeachedBooks(searchFilter.term);
+    let booksFetched;
+
+    if (searchFilter.minYear === '0' || searchFilter.maxYear === '0') {
+      booksFetched = await booksAPI.getSeachedBooks(searchFilter.term);
+      setBooks(booksFetched);
+      return;
+    }
+
+    booksFetched = await booksAPI.getSeachedBooks(
+      searchFilter.term,
+      searchFilter.minYear,
+      searchFilter.maxYear,
+    );
+
     setBooks(booksFetched);
   };
 
@@ -61,7 +74,7 @@ function MainPage() {
           {
             books.map((book) => (
               <TableRow
-                key={book.title}
+                key={`${book.title}-${book.author}`}
                 book={book}
               />
             ))
