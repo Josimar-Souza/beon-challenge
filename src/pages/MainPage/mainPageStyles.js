@@ -32,5 +32,6 @@ export const PagesContainer = styled.div`
 `;
 
 export const PageCount = styled.p`
+  font-size: 1.5vw;
   margin-bottom: 15px;
 `;
