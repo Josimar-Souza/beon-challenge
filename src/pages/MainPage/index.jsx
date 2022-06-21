@@ -3,10 +3,13 @@ import Header from '../../components/Header';
 import BooksAPI from '../../api/booksAPI';
 import TableRow from '../../components/TableRow';
 import SearchFilter from '../../components/SearchFilter';
+import PageButton from '../../components/PageButton';
 import {
   MainSection,
   BooksTable,
   TableTitle,
+  PagesContainer,
+  PageCount,
 } from './mainPageStyles';
 
 const booksAPI = new BooksAPI('http://localhost:4000');
@@ -15,6 +18,7 @@ function MainPage() {
   const [searchFilter, setSearchFilter] = useState({ term: '', minYear: '0', maxYear: '0' });
   const [books, setBooks] = useState([]);
   const [resultCount, setResultCount] = useState(0);
+  const [pageInfo, setPageInfo] = useState({ currPage: 1, numberOfPages: 0 });
 
   useEffect(() => {
     const getBooks = async () => {
@@ -22,6 +26,7 @@ function MainPage() {
       const booksResultCount = await booksAPI.getSearchResultCount('');
       setResultCount(booksResultCount);
       setBooks(booksFetched);
+      setPageInfo({ ...pageInfo, numberOfPages: booksResultCount / 20 });
     };
 
     getBooks();
@@ -39,6 +44,7 @@ function MainPage() {
       booksFetchedCount = await booksAPI.getSearchResultCount(`q=${searchFilter.term}`);
       setBooks(booksFetched);
       setResultCount(booksFetchedCount);
+      setPageInfo({ ...pageInfo, numberOfPages: Math.ceil(booksFetchedCount / 20) });
       return;
     }
 
@@ -54,6 +60,44 @@ function MainPage() {
 
     setBooks(booksFetched);
     setResultCount(booksFetchedCount);
+    setPageInfo({ ...pageInfo, numberOfPages: Math.ceil(booksFetchedCount / 20) });
+  };
+
+  const onPageButtonClick = async ({ target: { value } }) => {
+    setPageInfo({ ...pageInfo, currPage: value });
+    let fetchedBooks = [];
+    if (searchFilter.minYear === '0' || searchFilter.maxYear === '0') {
+      fetchedBooks = await booksAPI.getSeachedBooks(searchFilter.term, null, null, value);
+      setBooks(fetchedBooks);
+      return;
+    }
+
+    fetchedBooks = await booksAPI.getSeachedBooks(
+      searchFilter.term,
+      searchFilter.minYear,
+      searchFilter.maxYear,
+      value,
+    );
+
+    setBooks(fetchedBooks);
+  };
+
+  const getPages = () => {
+    const pages = [];
+
+    for (let index = 0; index < pageInfo.numberOfPages; index += 1) {
+      pages.push(
+        <PageButton
+          key={index}
+          value={index + 1}
+          onClick={onPageButtonClick}
+        >
+          {index + 1}
+        </PageButton>,
+      );
+    }
+
+    return pages;
   };
 
   return (
@@ -88,6 +132,12 @@ function MainPage() {
           }
         </tbody>
       </BooksTable>
+      <PageCount>{`Página atual: ${pageInfo.currPage}`}</PageCount>
+      <PagesContainer>
+        {
+          getPages().map((page) => page)
+        }
+      </PagesContainer>
     </MainSection>
   );
 }

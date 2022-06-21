@@ -22,3 +22,16 @@ export const TableTitle = styled.th`
   padding: 10px;
   text-align: left;
 `;
+
+export const PagesContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  max-width: 80%;
+  margin-bottom: 20px;
+  width: 100%;
+`;
+
+export const PageCount = styled.p`
+  font-size: 1.5vw;
+  margin-bottom: 15px;
+`;
