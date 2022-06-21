@@ -12,7 +12,7 @@ import {
 const booksAPI = new BooksAPI('http://localhost:4000');
 
 function MainPage() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchFilter, setSearchFilter] = useState({ term: '', minYear: 0, maxYear: 0 });
   const [books, setBooks] = useState([]);
   const [resultCount, setResultCount] = useState(0);
 
@@ -27,12 +27,12 @@ function MainPage() {
     getBooks();
   }, []);
 
-  const onInputChange = ({ target: { value } }) => {
-    setSearchTerm(value);
+  const onInputChange = ({ target: { value, name } }) => {
+    setSearchFilter({ ...searchFilter, [name]: value });
   };
 
   const onSearchButtonClick = async () => {
-    const booksFetched = await booksAPI.getTermSeachedBooks(searchTerm);
+    const booksFetched = await booksAPI.getSeachedBooks(searchFilter.term);
     setBooks(booksFetched);
   };
 
@@ -40,11 +40,14 @@ function MainPage() {
     <MainSection>
       <Header
         onInputChange={onInputChange}
-        inputValue={searchTerm}
+        inputValue={searchFilter.term}
         onSearchButtonClick={onSearchButtonClick}
       />
       <SearchFilter
         booksCount={resultCount}
+        onInputChange={onInputChange}
+        minYearValue={searchFilter.minYear}
+        maxYearValue={searchFilter.maxYear}
       />
       <BooksTable>
         <tbody>

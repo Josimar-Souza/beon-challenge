@@ -10,18 +10,25 @@ import {
   InputIconContainer,
 } from './searchFilterStyles';
 
-function SearchFilter({ booksCount }) {
+function SearchFilter(props) {
+  const {
+    booksCount,
+    onInputChange,
+    minYearValue,
+    maxYearValue,
+  } = props;
+
   return (
     <FilterContainer>
       <YearFilterContainer>
         <FilterText>Filtrar ano da publicação:</FilterText>
         <InputIconContainer>
-          <FilterInput type="number" />
+          <FilterInput type="number" name="minYear" onChange={onInputChange} value={minYearValue} />
           <FilterIcon src={calendarIcon} alt="Icone de filtro por ano" />
         </InputIconContainer>
         <FilterText>até</FilterText>
         <InputIconContainer>
-          <FilterInput type="number" />
+          <FilterInput type="number" name="maxYear" onChange={onInputChange} value={maxYearValue} />
           <FilterIcon src={calendarIcon} alt="Icone de filtro por ano" />
         </InputIconContainer>
       </YearFilterContainer>
@@ -32,6 +39,9 @@ function SearchFilter({ booksCount }) {
 
 SearchFilter.propTypes = {
   booksCount: PropTypes.number.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  minYearValue: PropTypes.string.isRequired,
+  maxYearValue: PropTypes.string.isRequired,
 };
 
 export default SearchFilter;
