@@ -1,10 +1,17 @@
 import React from 'react';
-import HeaderContainer from './headerStyles';
+import searchIcon from '../../icons/search.svg';
+import {
+  HeaderContainer,
+  SearchContainer,
+  SearchIcon,
+} from './headerStyles';
 
 function Header() {
   return (
     <HeaderContainer>
-      <h1>Header</h1>
+      <SearchContainer>
+        <SearchIcon src={searchIcon} alt="Icone de busca" />
+      </SearchContainer>
     </HeaderContainer>
   );
 }
