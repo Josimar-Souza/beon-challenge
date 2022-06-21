@@ -5,6 +5,7 @@ export const FilterContainer = styled.div`
   background-color: #e5e5e5;
   border: 1px solid black;
   display: flex;
+  justify-content: space-between;
   min-height: 100px;
   padding: 10px;
   width: 100%;

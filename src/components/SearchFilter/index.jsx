@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import calendarIcon from '../../icons/calendar.svg';
 import {
   FilterContainer,
@@ -9,7 +10,7 @@ import {
   InputIconContainer,
 } from './searchFilterStyles';
 
-function SearchFilter() {
+function SearchFilter({ booksCount }) {
   return (
     <FilterContainer>
       <YearFilterContainer>
@@ -24,8 +25,13 @@ function SearchFilter() {
           <FilterIcon src={calendarIcon} alt="Icone de filtro por ano" />
         </InputIconContainer>
       </YearFilterContainer>
+      <FilterText>{ `${booksCount} resultados encontrados` }</FilterText>
     </FilterContainer>
   );
 }
+
+SearchFilter.propTypes = {
+  booksCount: PropTypes.number.isRequired,
+};
 
 export default SearchFilter;
