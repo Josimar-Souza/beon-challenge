@@ -60,11 +60,23 @@ function MainPage() {
     setResultCount(booksFetchedCount);
   };
 
+  const onPageButtonClick = ({ target: { value } }) => {
+    setPageInfo({ ...pageInfo, currPage: value });
+  };
+
   const getPages = () => {
     const pages = [];
 
     for (let index = 0; index < pageInfo.numberOfPages; index += 1) {
-      pages.push(<PageButton>{index + 1}</PageButton>);
+      pages.push(
+        <PageButton
+          key={index}
+          value={index + 1}
+          onClick={onPageButtonClick}
+        >
+          {index + 1}
+        </PageButton>,
+      );
     }
 
     return pages;

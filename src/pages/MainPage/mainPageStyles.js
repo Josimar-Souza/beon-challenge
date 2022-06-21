@@ -24,7 +24,9 @@ export const TableTitle = styled.th`
 `;
 
 export const PagesContainer = styled.div`
-  border: 1px solid red;
+  display: flex;
+  justify-content: center;
   max-width: 80%;
+  margin-bottom: 20px;
   width: 100%;
 `;

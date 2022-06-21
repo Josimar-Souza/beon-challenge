@@ -2,14 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PageButtonStyle from './pageButtonStyles';
 
-function PageButton({ children }) {
+function PageButton({ children, value, onClick }) {
   return (
-    <PageButtonStyle>{children}</PageButtonStyle>
+    <PageButtonStyle
+      value={value}
+      onClick={onClick}
+    >
+      {children}
+    </PageButtonStyle>
   );
 }
 
 PageButton.propTypes = {
   children: PropTypes.node.isRequired,
+  value: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default PageButton;
