@@ -13,11 +13,28 @@ export const HeaderContainer = styled.section`
 export const SearchContainer = styled.div`
   align-items: center;
   background-color: white;
+  border: 1px solid black;
   display: flex;
-  height: 40px;
-  justify-content: space-around;
+  justify-content: center;
   max-width: 60%;
+  padding: 10px;
   width: 100%;
 `;
 
-export const SearchIcon = styled.img``;
+export const SearchIcon = styled.img`
+  margin-right: 15px;
+  max-width: 3.5%;
+  width: 100%;
+`;
+
+export const SearchInput = styled.input`
+  border: none;
+  font-size: 1.5vw;
+  max-width: 90%;
+  padding: 5px;
+  width: 100%;
+  
+  :focus {
+    outline: none;
+  }
+`;

@@ -4,6 +4,7 @@ import {
   HeaderContainer,
   SearchContainer,
   SearchIcon,
+  SearchInput,
 } from './headerStyles';
 
 function Header() {
@@ -11,6 +12,9 @@ function Header() {
     <HeaderContainer>
       <SearchContainer>
         <SearchIcon src={searchIcon} alt="Icone de busca" />
+        <SearchInput
+          placeholder="Busque livros pelo título, autor ou idioma"
+        />
       </SearchContainer>
     </HeaderContainer>
   );
