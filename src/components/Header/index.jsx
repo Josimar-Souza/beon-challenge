@@ -14,6 +14,7 @@ function Header(props) {
   const {
     onInputChange,
     inputValue,
+    onSearchButtonClick,
   } = props;
   return (
     <HeaderContainer>
@@ -26,7 +27,9 @@ function Header(props) {
           value={inputValue}
         />
       </SearchContainer>
-      <SearchButton>
+      <SearchButton
+        onClick={onSearchButtonClick}
+      >
         Buscar
       </SearchButton>
     </HeaderContainer>
@@ -36,6 +39,7 @@ function Header(props) {
 Header.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   inputValue: PropTypes.string.isRequired,
+  onSearchButtonClick: PropTypes.func.isRequired,
 };
 
 export default Header;
