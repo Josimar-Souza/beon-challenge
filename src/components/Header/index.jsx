@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import searchIcon from '../../icons/search.svg';
 import {
   HeaderContainer,
@@ -10,6 +10,12 @@ import {
 } from './headerStyles';
 
 function Header() {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const onInputChange = ({ target: { value } }) => {
+    setSearchTerm(value);
+  };
+  console.log(searchTerm);
   return (
     <HeaderContainer>
       <BeonLogo>beon</BeonLogo>
@@ -17,9 +23,12 @@ function Header() {
         <SearchIcon src={searchIcon} alt="Icone de busca" />
         <SearchInput
           placeholder="Busque livros pelo título, autor ou idioma"
+          onChange={onInputChange}
         />
       </SearchContainer>
-      <SearchButton>Buscar</SearchButton>
+      <SearchButton>
+        Buscar
+      </SearchButton>
     </HeaderContainer>
   );
 }
