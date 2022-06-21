@@ -7,6 +7,7 @@ import {
   MainSection,
   BooksTable,
   TableTitle,
+  PagesContainer,
 } from './mainPageStyles';
 
 const booksAPI = new BooksAPI('http://localhost:4000');
@@ -15,6 +16,7 @@ function MainPage() {
   const [searchFilter, setSearchFilter] = useState({ term: '', minYear: '0', maxYear: '0' });
   const [books, setBooks] = useState([]);
   const [resultCount, setResultCount] = useState(0);
+  const [pageInfo, setPageInfo] = useState({ currPage: 1, numberOfPages: 0 });
 
   useEffect(() => {
     const getBooks = async () => {
@@ -22,6 +24,7 @@ function MainPage() {
       const booksResultCount = await booksAPI.getSearchResultCount('');
       setResultCount(booksResultCount);
       setBooks(booksFetched);
+      setPageInfo({ ...pageInfo, numberOfPages: booksResultCount / 20 });
     };
 
     getBooks();
@@ -88,6 +91,9 @@ function MainPage() {
           }
         </tbody>
       </BooksTable>
+      <PagesContainer>
+        Page 1
+      </PagesContainer>
     </MainSection>
   );
 }

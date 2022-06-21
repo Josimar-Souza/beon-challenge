@@ -22,3 +22,9 @@ export const TableTitle = styled.th`
   padding: 10px;
   text-align: left;
 `;
+
+export const PagesContainer = styled.div`
+  border: 1px solid red;
+  max-width: 80%;
+  width: 100%;
+`;
