@@ -1,8 +1,13 @@
 import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import pages from './pages';
 
 function App() {
   return (
-    <h1>Beon Challenge</h1>
+    <Routes>
+      <Route exact path="/" element={<Navigate to="/books" />} />
+      <Route exact path="/books" element={<pages.MainPage />} />
+    </Routes>
   );
 }
 
