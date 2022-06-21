@@ -25,6 +25,7 @@ function Header(props) {
           placeholder="Busque livros pelo título, autor ou idioma"
           onChange={onInputChange}
           value={inputValue}
+          name="term"
         />
       </SearchContainer>
       <SearchButton

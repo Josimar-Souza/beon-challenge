@@ -8,15 +8,25 @@ class BooksAPI {
     });
   }
 
-  async getTermSeachedBooks(term) {
-    const { data } = await this.http.get(`/books?q=${term}`);
+  async getSeachedBooks(term, minYear = null, maxYear = null, page = 1, limit = 20) {
+    if (minYear == null || maxYear == null) {
+      const { data } = await this.http.get(`/books?q=${term}&_page=${page}&_limit=${limit}`);
+      return data;
+    }
 
+    const yearFilter = `year_gte=${minYear}&year_lte=${maxYear}`;
+    const { data } = await this.http.get(`/books?q=${term}&${yearFilter}&_page=${page}&_limit=${limit}`);
     return data;
   }
 
   async getAllBooksPerPage(page = 1, limit = 20) {
     const { data } = await this.http.get(`/books?_page=${page}&_limit=${limit}`);
     return data;
+  }
+
+  async getSearchResultCount(query) {
+    const { data } = await this.http.get(`/books?${query}`);
+    return data.length;
   }
 }
 
