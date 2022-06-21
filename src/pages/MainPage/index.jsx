@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import BooksAPI from '../../api/booksAPI';
 import {
@@ -12,6 +12,15 @@ const booksAPI = new BooksAPI('http://localhost:4000');
 function MainPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const getBooks = async () => {
+      const booksFetched = await booksAPI.getAllBooksPerPage(1);
+      setBooks(booksFetched);
+    };
+
+    getBooks();
+  }, []);
 
   const onInputChange = ({ target: { value } }) => {
     setSearchTerm(value);
