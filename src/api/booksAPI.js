@@ -9,8 +9,9 @@ class BooksAPI {
   }
 
   async getTermSeachedBooks(term) {
-    const result = await this.http.get(`/books?q=${term}`);
-    console.log(result);
+    const { data } = await this.http.get(`/books?q=${term}`);
+
+    return data;
   }
 }
 

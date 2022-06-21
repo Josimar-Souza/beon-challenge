@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import searchIcon from '../../icons/search.svg';
 import {
   HeaderContainer,
@@ -9,13 +10,11 @@ import {
   SearchButton,
 } from './headerStyles';
 
-function Header() {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const onInputChange = ({ target: { value } }) => {
-    setSearchTerm(value);
-  };
-  console.log(searchTerm);
+function Header(props) {
+  const {
+    onInputChange,
+    inputValue,
+  } = props;
   return (
     <HeaderContainer>
       <BeonLogo>beon</BeonLogo>
@@ -24,6 +23,7 @@ function Header() {
         <SearchInput
           placeholder="Busque livros pelo título, autor ou idioma"
           onChange={onInputChange}
+          value={inputValue}
         />
       </SearchContainer>
       <SearchButton>
@@ -32,5 +32,10 @@ function Header() {
     </HeaderContainer>
   );
 }
+
+Header.propTypes = {
+  onInputChange: PropTypes.func.isRequired,
+  inputValue: PropTypes.string.isRequired,
+};
 
 export default Header;
