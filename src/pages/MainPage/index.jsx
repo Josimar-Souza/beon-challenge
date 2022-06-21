@@ -43,6 +43,7 @@ function MainPage() {
       booksFetchedCount = await booksAPI.getSearchResultCount(`q=${searchFilter.term}`);
       setBooks(booksFetched);
       setResultCount(booksFetchedCount);
+      setPageInfo({ ...pageInfo, numberOfPages: Math.ceil(booksFetchedCount / 20) });
       return;
     }
 
@@ -58,10 +59,26 @@ function MainPage() {
 
     setBooks(booksFetched);
     setResultCount(booksFetchedCount);
+    setPageInfo({ ...pageInfo, numberOfPages: Math.ceil(booksFetchedCount / 20) });
   };
 
-  const onPageButtonClick = ({ target: { value } }) => {
+  const onPageButtonClick = async ({ target: { value } }) => {
     setPageInfo({ ...pageInfo, currPage: value });
+    let fetchedBooks = [];
+    if (searchFilter.minYear === '0' || searchFilter.maxYear === '0') {
+      fetchedBooks = await booksAPI.getSeachedBooks(searchFilter.term, null, null, value);
+      setBooks(fetchedBooks);
+      return;
+    }
+
+    fetchedBooks = await booksAPI.getSeachedBooks(
+      searchFilter.term,
+      searchFilter.minYear,
+      searchFilter.maxYear,
+      value,
+    );
+
+    setBooks(fetchedBooks);
   };
 
   const getPages = () => {
