@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import BooksAPI from '../../api/booksAPI';
+import TableRow from '../../components/TableRow';
 import {
   MainSection,
   BooksTable,
@@ -29,7 +30,6 @@ function MainPage() {
   const onSearchButtonClick = async () => {
     const booksFetched = await booksAPI.getTermSeachedBooks(searchTerm);
     setBooks(booksFetched);
-    console.log(books);
   };
 
   return (
@@ -48,6 +48,14 @@ function MainPage() {
             <TableTitle>Ano</TableTitle>
             <TableTitle>Ações</TableTitle>
           </tr>
+          {
+            books.map((book) => (
+              <TableRow
+                key={book.title}
+                book={book}
+              />
+            ))
+          }
         </tbody>
       </BooksTable>
     </MainSection>
