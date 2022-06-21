@@ -9,6 +9,7 @@ import {
   BooksTable,
   TableTitle,
   PagesContainer,
+  PageCount,
 } from './mainPageStyles';
 
 const booksAPI = new BooksAPI('http://localhost:4000');
@@ -131,6 +132,7 @@ function MainPage() {
           }
         </tbody>
       </BooksTable>
+      <PageCount>{`Página atual: ${pageInfo.currPage}`}</PageCount>
       <PagesContainer>
         {
           getPages().map((page) => page)

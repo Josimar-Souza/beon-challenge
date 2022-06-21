@@ -30,3 +30,7 @@ export const PagesContainer = styled.div`
   margin-bottom: 20px;
   width: 100%;
 `;
+
+export const PageCount = styled.p`
+  margin-bottom: 15px;
+`;
