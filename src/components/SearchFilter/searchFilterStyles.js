@@ -17,6 +17,7 @@ export const FilterText = styled.p`
 `;
 
 export const YearFilterContainer = styled.div`
+  align-items: center;
   display: flex;
   justify-content: space-around;
   max-width: 40%;

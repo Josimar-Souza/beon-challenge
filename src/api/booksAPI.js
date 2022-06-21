@@ -18,6 +18,11 @@ class BooksAPI {
     const { data } = await this.http.get(`/books?_page=${page}&_limit=${limit}`);
     return data;
   }
+
+  async getSearchResultCount(query) {
+    const { data } = await this.http.get(`/books?${query}`);
+    return data.length;
+  }
 }
 
 export default BooksAPI;

@@ -14,10 +14,13 @@ const booksAPI = new BooksAPI('http://localhost:4000');
 function MainPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [books, setBooks] = useState([]);
+  const [resultCount, setResultCount] = useState(0);
 
   useEffect(() => {
     const getBooks = async () => {
       const booksFetched = await booksAPI.getAllBooksPerPage(1);
+      const booksResultCount = await booksAPI.getSearchResultCount('');
+      setResultCount(booksResultCount);
       setBooks(booksFetched);
     };
 
@@ -40,7 +43,9 @@ function MainPage() {
         inputValue={searchTerm}
         onSearchButtonClick={onSearchButtonClick}
       />
-      <SearchFilter />
+      <SearchFilter
+        booksCount={resultCount}
+      />
       <BooksTable>
         <tbody>
           <tr>
