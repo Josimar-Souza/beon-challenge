@@ -20,7 +20,7 @@ export const YearFilterContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-around;
-  max-width: 40%;
+  max-width: 50%;
   width: 100%;
 `;
 

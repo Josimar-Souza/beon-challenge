@@ -33,10 +33,12 @@ function MainPage() {
 
   const onSearchButtonClick = async () => {
     let booksFetched;
-
+    let booksFetchedCount;
     if (searchFilter.minYear === '0' || searchFilter.maxYear === '0') {
       booksFetched = await booksAPI.getSeachedBooks(searchFilter.term);
+      booksFetchedCount = await booksAPI.getSearchResultCount(`q=${searchFilter.term}`);
       setBooks(booksFetched);
+      setResultCount(booksFetchedCount);
       return;
     }
 
@@ -46,7 +48,12 @@ function MainPage() {
       searchFilter.maxYear,
     );
 
+    booksFetchedCount = await booksAPI.getSearchResultCount(
+      `q=${searchFilter.term}&year_gte=${searchFilter.minYear}&year_lte=${searchFilter.maxYear}`,
+    );
+
     setBooks(booksFetched);
+    setResultCount(booksFetchedCount);
   };
 
   return (
