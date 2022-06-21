@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import BooksAPI from '../../api/booksAPI';
 import TableRow from '../../components/TableRow';
 import SearchFilter from '../../components/SearchFilter';
+import PageButton from '../../components/PageButton';
 import {
   MainSection,
   BooksTable,
@@ -59,6 +60,16 @@ function MainPage() {
     setResultCount(booksFetchedCount);
   };
 
+  const getPages = () => {
+    const pages = [];
+
+    for (let index = 0; index < pageInfo.numberOfPages; index += 1) {
+      pages.push(<PageButton>{index + 1}</PageButton>);
+    }
+
+    return pages;
+  };
+
   return (
     <MainSection>
       <Header
@@ -92,7 +103,9 @@ function MainPage() {
         </tbody>
       </BooksTable>
       <PagesContainer>
-        Page 1
+        {
+          getPages().map((page) => page)
+        }
       </PagesContainer>
     </MainSection>
   );
