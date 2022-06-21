@@ -16,7 +16,7 @@ export const SearchContainer = styled.div`
   border: 1px solid black;
   display: flex;
   justify-content: center;
-  max-width: 60%;
+  max-width: 65%;
   padding: 10px;
   width: 100%;
 `;
@@ -39,8 +39,19 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const BeonLogo = styled.text`
-  color: #bc51bc;
+export const BeonLogo = styled.p`
+  color: #a443bc;
   font-size: 4vw;
   font-family: 'Montserrat', sans-serif;
+`;
+
+export const SearchButton = styled.button`
+  font-size: 2.3vw;
+  max-width: 15%;
+  padding: 5px;
+  width: 100%;
+  
+  :hover {
+    cursor: pointer;
+  }
 `;

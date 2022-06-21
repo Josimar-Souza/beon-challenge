@@ -6,6 +6,7 @@ import {
   SearchIcon,
   SearchInput,
   BeonLogo,
+  SearchButton,
 } from './headerStyles';
 
 function Header() {
@@ -18,6 +19,7 @@ function Header() {
           placeholder="Busque livros pelo título, autor ou idioma"
         />
       </SearchContainer>
+      <SearchButton>Buscar</SearchButton>
     </HeaderContainer>
   );
 }
