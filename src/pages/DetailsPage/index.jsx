@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import DetailsMainSection from './detailsPageStyle';
 import BooksAPI from '../../api/booksAPI';
+import {
+  DetailsMainSection,
+  InfoContainer,
+} from './detailsPageStyle';
 
 const booksAPI = new BooksAPI('http://localhost:4000', 10000);
 
@@ -17,10 +20,12 @@ function DetailsPage() {
 
     getBook();
   }, []);
-
+  console.log(book);
   return (
     <DetailsMainSection>
-      <h1>Details Page</h1>
+      <InfoContainer>
+        <h1>Details Page</h1>
+      </InfoContainer>
     </DetailsMainSection>
   );
 }
