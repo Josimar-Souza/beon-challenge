@@ -14,7 +14,7 @@ import {
   LoadingContainer,
 } from './mainPageStyles';
 
-const booksAPI = new BooksAPI('http://localhost:4000', 10000);
+export const booksAPI = new BooksAPI('http://localhost:4000', 10000);
 const pageLimit = 10;
 
 function MainPage() {
@@ -25,7 +25,7 @@ function MainPage() {
 
   useEffect(() => {
     const getBooks = async () => {
-      const booksFetched = await booksAPI.getAllBooksPerPage(1);
+      const booksFetched = await booksAPI.getSeachedBooks('');
       const booksResultCount = await booksAPI.getSearchResultCount('');
       setResultCount(booksResultCount);
       setBooks(booksFetched);
