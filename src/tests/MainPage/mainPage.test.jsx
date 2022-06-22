@@ -85,5 +85,24 @@ describe('Testes da página principal', () => {
       expect(paragraph).toBeInTheDocument();
       expect(paragraph.innerHTML).toBe('até');
     });
+
+    it('Um input para ano máximo', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const maxYearInput = await screen.findByTestId('filter-max-input');
+      expect(maxYearInput).toBeInTheDocument();
+    });
+
+    it('Um parágrafo informando quantos resultados encontrados', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const paragraph = await screen.findByTestId('filter-books-count');
+      expect(paragraph).toBeInTheDocument();
+      expect(paragraph.innerHTML).toBe('21 resultados encontrados');
+    });
   });
 });

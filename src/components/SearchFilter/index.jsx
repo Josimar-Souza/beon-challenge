@@ -46,7 +46,13 @@ function SearchFilter(props) {
           até
         </FilterText>
         <InputIconContainer>
-          <FilterInput type="number" name="maxYear" onChange={onInputChange} value={maxYearValue} />
+          <FilterInput
+            type="number"
+            name="maxYear"
+            onChange={onInputChange}
+            value={maxYearValue}
+            data-testid="filter-max-input"
+          />
           <FilterIcon
             src={calendarIcon}
             alt="Icone de filtro por ano"
@@ -54,7 +60,11 @@ function SearchFilter(props) {
           />
         </InputIconContainer>
       </YearFilterContainer>
-      <FilterText>{ `${booksCount} resultados encontrados` }</FilterText>
+      <FilterText
+        data-testid="filter-books-count"
+      >
+        { `${booksCount} resultados encontrados` }
+      </FilterText>
     </FilterContainer>
   );
 }
