@@ -12,7 +12,7 @@ import {
   PageCount,
 } from './mainPageStyles';
 
-const booksAPI = new BooksAPI('http://localhost:4000');
+const booksAPI = new BooksAPI('http://localhost:4000', 10000);
 const pageLimit = 10;
 
 function MainPage() {
