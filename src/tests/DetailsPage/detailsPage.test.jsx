@@ -75,4 +75,24 @@ describe('Verifica a existência e informações de todos os elementos da págin
       expect(country.innerHTML).toBe(`País: ${singleBook[0].country}`);
     });
   });
+
+  describe('O númeor de páginas', () => {
+    it('Verifica se existe o número de páginas', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.DetailsPage />);
+      });
+
+      const numberOfPages = await screen.findByTestId('details-book-pages');
+      expect(numberOfPages).toBeInTheDocument();
+    });
+
+    it('Verifica se o número de páginas está correto', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.DetailsPage />);
+      });
+
+      const numberOfPages = await screen.findByTestId('details-book-pages');
+      expect(numberOfPages.innerHTML).toBe(`Número de páginas: ${singleBook[0].pages}`);
+    });
+  });
 });
