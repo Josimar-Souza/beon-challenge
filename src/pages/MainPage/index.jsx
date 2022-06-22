@@ -61,7 +61,7 @@ function MainPage() {
 
     setBooks(booksFetched);
     setResultCount(booksFetchedCount);
-    setPageInfo({ ...pageInfo, numberOfPages: Math.ceil(booksFetchedCount / pageLimit) });
+    setPageInfo({ currPage: 1, numberOfPages: Math.ceil(booksFetchedCount / pageLimit) });
   };
 
   const onPageButtonClick = async ({ target: { value } }) => {
