@@ -123,10 +123,11 @@ function MainPage() {
             <TableTitle>Ações</TableTitle>
           </tr>
           {
-            books.map((book) => (
+            books.map((book, index) => (
               <TableRow
                 key={`${book.title}-${book.author}`}
                 book={book}
+                index={index}
               />
             ))
           }

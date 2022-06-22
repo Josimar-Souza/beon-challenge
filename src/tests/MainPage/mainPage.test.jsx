@@ -9,7 +9,15 @@ import booksList from '../mocks/booksList';
 
 describe('Testes da página principal', () => {
   beforeEach(() => {
-    jest.spyOn(booksAPI, 'getSeachedBooks').mockResolvedValue(booksList);
+    jest.spyOn(booksAPI, 'getSeachedBooks').mockImplementation(async (term = '') => {
+      if (term === '') {
+        return booksList.slice(0, 10);
+      }
+
+      const booksFound = booksList.filter((book) => book.title === term);
+
+      return booksFound;
+    });
 
     jest.spyOn(booksAPI, 'getSearchResultCount').mockResolvedValue(21);
   });
@@ -124,6 +132,97 @@ describe('Testes da página principal', () => {
 
       const pageButtons = await screen.findAllByTestId('page-button');
       expect(pageButtons.length).toBe(3);
+    });
+  });
+
+  describe('Verifica a existencia e informações dos elementos da tabela', () => {
+    it('Verifica se existe todos os elementos da primeira página', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const tableRows = await screen.findAllByTestId('table-row');
+      expect(tableRows.length).toBe(10);
+    });
+
+    it('Verifica os títulos dos livros', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const firstPageBooks = booksList.slice(0, 10);
+      const titlePromises = [];
+
+      firstPageBooks.forEach((book, index) => {
+        const bookTitle = screen.findByTestId(`row-title-${index}`);
+        titlePromises.push(bookTitle);
+      });
+
+      const titles = await Promise.all(titlePromises);
+
+      titles.forEach((title, index) => {
+        expect(title.innerHTML).toBe(booksList[index].title);
+      });
+    });
+
+    it('Verifica os autores dos livros', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const firstPageBooks = booksList.slice(0, 10);
+      const authorPromises = [];
+
+      firstPageBooks.forEach((book, index) => {
+        const bookAuthor = screen.findByTestId(`row-author-${index}`);
+        authorPromises.push(bookAuthor);
+      });
+
+      const authors = await Promise.all(authorPromises);
+
+      authors.forEach((author, index) => {
+        expect(author.innerHTML).toBe(booksList[index].author);
+      });
+    });
+
+    it('Verifica os idiomas dos livros', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const firstPageBooks = booksList.slice(0, 10);
+      const languagePromises = [];
+
+      firstPageBooks.forEach((book, index) => {
+        const bookLanguage = screen.findByTestId(`row-language-${index}`);
+        languagePromises.push(bookLanguage);
+      });
+
+      const languages = await Promise.all(languagePromises);
+
+      languages.forEach((language, index) => {
+        expect(language.innerHTML).toBe(booksList[index].language);
+      });
+    });
+
+    it('Verifica os anos dos livros', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const firstPageBooks = booksList.slice(0, 10);
+      const yearPromises = [];
+
+      firstPageBooks.forEach((book, index) => {
+        const bookYear = screen.findByTestId(`row-year-${index}`);
+        yearPromises.push(bookYear);
+      });
+
+      const years = await Promise.all(yearPromises);
+
+      years.forEach((year, index) => {
+        expect(year.innerHTML).toBe(booksList[index].year.toString());
+      });
     });
   });
 });
