@@ -33,3 +33,5 @@ export const BookInfo = styled.p`
   font-weight: 600;
   margin: 15px 0;
 `;
+
+export const BookLink = styled.a``;
