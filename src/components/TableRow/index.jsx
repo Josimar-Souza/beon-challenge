@@ -7,7 +7,7 @@ import {
   BookDetailsText,
 } from './tableRowStyles';
 
-function TableRow({ book }) {
+function TableRow({ book, index }) {
   const navigate = useNavigate();
 
   const onDetailsClick = () => {
@@ -15,16 +15,19 @@ function TableRow({ book }) {
   };
 
   return (
-    <TableRowStyle>
-      <TableCell>{book.title}</TableCell>
-      <TableCell>{book.author}</TableCell>
-      <TableCell>{book.language}</TableCell>
-      <TableCell>{book.year}</TableCell>
+    <TableRowStyle
+      data-testid="table-row"
+    >
+      <TableCell data-testid={`row-title-${index}`}>{book.title}</TableCell>
+      <TableCell data-testid={`row-author-${index}`}>{book.author}</TableCell>
+      <TableCell data-testid={`row-language-${index}`}>{book.language}</TableCell>
+      <TableCell data-testid={`row-year-${index}`}>{book.year}</TableCell>
       <TableCell
         action="true"
       >
         <BookDetailsText
           onClick={onDetailsClick}
+          data-testid={`row-details-${index}`}
         >
           Detalhes
         </BookDetailsText>
@@ -40,6 +43,7 @@ TableRow.propTypes = {
     language: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default TableRow;

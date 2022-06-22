@@ -14,7 +14,7 @@ import {
   LoadingContainer,
 } from './mainPageStyles';
 
-const booksAPI = new BooksAPI('http://localhost:4000', 10000);
+export const booksAPI = new BooksAPI('http://localhost:4000', 10000);
 const pageLimit = 10;
 
 function MainPage() {
@@ -25,10 +25,10 @@ function MainPage() {
 
   useEffect(() => {
     const getBooks = async () => {
-      const booksFetched = await booksAPI.getAllBooksPerPage(1);
+      const booksFetched = await booksAPI.getSeachedBooks('');
       const booksResultCount = await booksAPI.getSearchResultCount('');
-      setResultCount(booksResultCount);
       setBooks(booksFetched);
+      setResultCount(booksResultCount);
       setPageInfo({ ...pageInfo, numberOfPages: booksResultCount / pageLimit });
     };
 
@@ -104,7 +104,7 @@ function MainPage() {
   };
 
   const getTable = () => {
-    if (books.length <= 0) {
+    if (!books || books.length <= 0) {
       return (
         <LoadingContainer>
           <Loading />
@@ -123,10 +123,11 @@ function MainPage() {
             <TableTitle>Ações</TableTitle>
           </tr>
           {
-            books.map((book) => (
+            books.map((book, index) => (
               <TableRow
                 key={`${book.title}-${book.author}`}
                 book={book}
+                index={index}
               />
             ))
           }
@@ -149,7 +150,11 @@ function MainPage() {
         maxYearValue={searchFilter.maxYear}
       />
       { getTable() }
-      <PageCount>{`Página atual: ${pageInfo.currPage}`}</PageCount>
+      <PageCount
+        data-testid="main-current-page"
+      >
+        {`Página atual: ${pageInfo.currPage}`}
+      </PageCount>
       <PagesContainer>
         {
           getPages().map((page) => page)

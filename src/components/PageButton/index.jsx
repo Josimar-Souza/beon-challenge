@@ -7,6 +7,7 @@ function PageButton({ children, value, onClick }) {
     <PageButtonStyle
       value={value}
       onClick={onClick}
+      data-testid="page-button"
     >
       {children}
     </PageButtonStyle>

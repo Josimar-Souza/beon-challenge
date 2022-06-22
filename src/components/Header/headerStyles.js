@@ -39,7 +39,7 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const BeonLogo = styled.p`
+export const BeonLogo = styled.h1`
   color: #a443bc;
   font-size: 4vw;
   font-family: 'Montserrat', sans-serif;

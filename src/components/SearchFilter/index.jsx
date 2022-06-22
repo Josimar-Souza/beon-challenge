@@ -21,18 +21,50 @@ function SearchFilter(props) {
   return (
     <FilterContainer>
       <YearFilterContainer>
-        <FilterText>Filtrar ano da publicação:</FilterText>
+        <FilterText
+          data-testid="filter-paragraph-description"
+        >
+          Filtrar ano da publicação:
+        </FilterText>
         <InputIconContainer>
-          <FilterInput type="number" name="minYear" onChange={onInputChange} value={minYearValue} />
-          <FilterIcon src={calendarIcon} alt="Icone de filtro por ano" />
+          <FilterInput
+            type="number"
+            name="minYear"
+            onChange={onInputChange}
+            value={minYearValue}
+            data-testid="filter-min-input"
+          />
+          <FilterIcon
+            src={calendarIcon}
+            alt="Icone de filtro por ano"
+            data-testid="filter-input-icon"
+          />
         </InputIconContainer>
-        <FilterText>até</FilterText>
+        <FilterText
+          data-testid="filter-paragraph-until"
+        >
+          até
+        </FilterText>
         <InputIconContainer>
-          <FilterInput type="number" name="maxYear" onChange={onInputChange} value={maxYearValue} />
-          <FilterIcon src={calendarIcon} alt="Icone de filtro por ano" />
+          <FilterInput
+            type="number"
+            name="maxYear"
+            onChange={onInputChange}
+            value={maxYearValue}
+            data-testid="filter-max-input"
+          />
+          <FilterIcon
+            src={calendarIcon}
+            alt="Icone de filtro por ano"
+            data-testid="filter-input-icon"
+          />
         </InputIconContainer>
       </YearFilterContainer>
-      <FilterText>{ `${booksCount} resultados encontrados` }</FilterText>
+      <FilterText
+        data-testid="filter-books-count"
+      >
+        { `${booksCount} resultados encontrados` }
+      </FilterText>
     </FilterContainer>
   );
 }
