@@ -115,4 +115,24 @@ describe('Verifica a existência e informações de todos os elementos da págin
       expect(year.innerHTML).toBe(`Ano de lançamento: ${singleBook[0].year}`);
     });
   });
+
+  describe('O idioma', () => {
+    it('Verifica se existe o idioma', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.DetailsPage />);
+      });
+
+      const language = await screen.findByTestId('details-book-language');
+      expect(language).toBeInTheDocument();
+    });
+
+    it('Verifica se o idioma está correto', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.DetailsPage />);
+      });
+
+      const language = await screen.findByTestId('details-book-language');
+      expect(language.innerHTML).toBe(`Idioma: ${singleBook[0].language}`);
+    });
+  });
 });

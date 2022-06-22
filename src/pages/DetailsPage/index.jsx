@@ -54,7 +54,11 @@ function DetailsPage() {
           >
             {`Ano de lançamento: ${book.year}`}
           </BookInfo>
-          <BookInfo>{`Idioma: ${book.language}`}</BookInfo>
+          <BookInfo
+            data-testid="details-book-language"
+          >
+            {`Idioma: ${book.language}`}
+          </BookInfo>
           <BookInfo><BookLink href={book.link} target="_blank">{book.link}</BookLink></BookInfo>
         </InfoContainer>
       </DetailsMainSection>
