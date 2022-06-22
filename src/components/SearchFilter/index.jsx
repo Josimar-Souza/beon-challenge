@@ -34,12 +34,20 @@ function SearchFilter(props) {
             value={minYearValue}
             data-testid="filter-min-input"
           />
-          <FilterIcon src={calendarIcon} alt="Icone de filtro por ano" />
+          <FilterIcon
+            src={calendarIcon}
+            alt="Icone de filtro por ano"
+            data-testid="filter-input-icon"
+          />
         </InputIconContainer>
         <FilterText>até</FilterText>
         <InputIconContainer>
           <FilterInput type="number" name="maxYear" onChange={onInputChange} value={maxYearValue} />
-          <FilterIcon src={calendarIcon} alt="Icone de filtro por ano" />
+          <FilterIcon
+            src={calendarIcon}
+            alt="Icone de filtro por ano"
+            data-testid="filter-input-icon"
+          />
         </InputIconContainer>
       </YearFilterContainer>
       <FilterText>{ `${booksCount} resultados encontrados` }</FilterText>

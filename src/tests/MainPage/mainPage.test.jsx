@@ -65,5 +65,14 @@ describe('Testes da página principal', () => {
       const minYearInput = await screen.findByTestId('filter-min-input');
       expect(minYearInput).toBeInTheDocument();
     });
+
+    it('Todos os icones dos inputs', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const inputIcons = await screen.findAllByTestId('filter-input-icon');
+      expect(inputIcons.length).toBe(2);
+    });
   });
 });
