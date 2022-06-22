@@ -105,4 +105,16 @@ describe('Testes da página principal', () => {
       expect(paragraph.innerHTML).toBe('21 resultados encontrados');
     });
   });
+
+  describe('Verifica a existência de elementos relacionados a páginação', () => {
+    it('Um parágrafo mostrando a página atual', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const currentPage = await screen.findByTestId('main-current-page');
+      expect(currentPage).toBeInTheDocument();
+      expect(currentPage.innerHTML).toBe('Página atual: 1');
+    });
+  });
 });

@@ -149,7 +149,11 @@ function MainPage() {
         maxYearValue={searchFilter.maxYear}
       />
       { getTable() }
-      <PageCount>{`Página atual: ${pageInfo.currPage}`}</PageCount>
+      <PageCount
+        data-testid="main-current-page"
+      >
+        {`Página atual: ${pageInfo.currPage}`}
+      </PageCount>
       <PagesContainer>
         {
           getPages().map((page) => page)
