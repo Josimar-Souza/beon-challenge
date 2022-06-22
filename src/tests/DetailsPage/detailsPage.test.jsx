@@ -23,9 +23,21 @@ describe('Verifica a existência e informações de todos os elementos da págin
       expect(title).toBeInTheDocument();
     });
 
-    it('Verifica o conteúdo do título', async () => {
+    it('Verifica se é o título correto', async () => {
       const title = await screen.findByTestId('details-book-title');
       expect(title.innerHTML).toBe(singleBook[0].title);
+    });
+  });
+
+  describe('O autor do livro', () => {
+    it('Verifica se existe um autor', async () => {
+      const author = await screen.findByTestId('details-book-author');
+      expect(author).toBeInTheDocument();
+    });
+
+    it('Verifica se é o autor correto', async () => {
+      const author = await screen.findByTestId('details-book-author');
+      expect(author.innerHTML).toBe(`Autor: ${singleBook[0].author}`);
     });
   });
 });

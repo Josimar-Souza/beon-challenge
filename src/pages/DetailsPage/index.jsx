@@ -34,7 +34,11 @@ function DetailsPage() {
           >
             {book.title}
           </BookTitle>
-          <BookInfo>{`Autor: ${book.author}`}</BookInfo>
+          <BookInfo
+            data-testid="details-book-author"
+          >
+            {`Autor: ${book.author}`}
+          </BookInfo>
           <BookInfo>{`Pais: ${book.country}`}</BookInfo>
           <BookInfo>{`Número de páginas: ${book.pages}`}</BookInfo>
           <BookInfo>{`Ano de lançamento: ${book.year}`}</BookInfo>
