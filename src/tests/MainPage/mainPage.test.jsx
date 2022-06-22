@@ -116,5 +116,14 @@ describe('Testes da página principal', () => {
       expect(currentPage).toBeInTheDocument();
       expect(currentPage.innerHTML).toBe('Página atual: 1');
     });
+
+    it('Todos os botões de páginas', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const pageButtons = await screen.findAllByTestId('page-button');
+      expect(pageButtons.length).toBe(3);
+    });
   });
 });
