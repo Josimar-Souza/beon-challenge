@@ -21,9 +21,19 @@ function SearchFilter(props) {
   return (
     <FilterContainer>
       <YearFilterContainer>
-        <FilterText>Filtrar ano da publicação:</FilterText>
+        <FilterText
+          data-testid="filter-paragraph"
+        >
+          Filtrar ano da publicação:
+        </FilterText>
         <InputIconContainer>
-          <FilterInput type="number" name="minYear" onChange={onInputChange} value={minYearValue} />
+          <FilterInput
+            type="number"
+            name="minYear"
+            onChange={onInputChange}
+            value={minYearValue}
+            data-testid="filter-min-input"
+          />
           <FilterIcon src={calendarIcon} alt="Icone de filtro por ano" />
         </InputIconContainer>
         <FilterText>até</FilterText>

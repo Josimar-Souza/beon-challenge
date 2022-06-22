@@ -27,8 +27,8 @@ function MainPage() {
     const getBooks = async () => {
       const booksFetched = await booksAPI.getSeachedBooks('');
       const booksResultCount = await booksAPI.getSearchResultCount('');
-      setResultCount(booksResultCount);
       setBooks(booksFetched);
+      setResultCount(booksResultCount);
       setPageInfo({ ...pageInfo, numberOfPages: booksResultCount / pageLimit });
     };
 
@@ -104,7 +104,7 @@ function MainPage() {
   };
 
   const getTable = () => {
-    if (books.length <= 0) {
+    if (!books || books.length <= 0) {
       return (
         <LoadingContainer>
           <Loading />
