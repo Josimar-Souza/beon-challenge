@@ -76,7 +76,7 @@ describe('Verifica a existência e informações de todos os elementos da págin
     });
   });
 
-  describe('O númeor de páginas', () => {
+  describe('O número de páginas', () => {
     it('Verifica se existe o número de páginas', async () => {
       await act(async () => {
         renderWithRouter(<pages.DetailsPage />);
