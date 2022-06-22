@@ -28,4 +28,13 @@ describe('Verifica a existência dos elementos do header', () => {
     const searchButton = await screen.findByRole('button', { name: 'Buscar' });
     expect(searchButton).toBeInTheDocument();
   });
+
+  it('Um input com o placeholder "Busque livros pelo título, autor ou idioma"', async () => {
+    await act(async () => {
+      renderWithRouter(<pages.MainPage />);
+    });
+
+    const searchInput = await screen.findByPlaceholderText('Busque livros pelo título, autor ou idioma');
+    expect(searchInput).toBeInTheDocument();
+  });
 });
