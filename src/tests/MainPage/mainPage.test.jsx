@@ -2,6 +2,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helpers/renderWithRouter';
 import pages from '../../pages';
 import { booksAPI } from '../../pages/MainPage';
@@ -223,6 +224,55 @@ describe('Testes da página principal', () => {
       years.forEach((year, index) => {
         expect(year.innerHTML).toBe(booksList[index].year.toString());
       });
+    });
+  });
+
+  describe('Verifica o comportamento da página', () => {
+    it('Verifica se ao clicar no botão de página 2 a página atual muda', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const pageButtons = await screen.findAllByTestId('page-button');
+
+      await act(async () => {
+        userEvent.click(pageButtons[1]);
+      });
+
+      const currentPage = await screen.findByTestId('main-current-page');
+      expect(currentPage.innerHTML).toBe('Página atual: 2');
+    });
+
+    it('Verifica se ao clicar em no botão "Detalhes" é redirecionado', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const bookDetailsButton = await screen.findByTestId('row-details-0');
+
+      await act(async () => {
+        userEvent.click(bookDetailsButton);
+      });
+
+      const { location: { pathname } } = window;
+      expect(pathname).toBe('/books/details/Teste%20title%201');
+    });
+
+    it('Verifica se é possível buscar um livro pelo título', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const searchButton = await screen.findByRole('button', { name: 'Buscar' });
+      const searchInput = await screen.findByPlaceholderText('Busque livros pelo título, autor ou idioma');
+
+      await act(async () => {
+        userEvent.type(searchInput, 'Teste title 1');
+        userEvent.click(searchButton);
+      });
+
+      const tableRows = await screen.findAllByTestId('table-row');
+      expect(tableRows.length).toBe(1);
     });
   });
 });

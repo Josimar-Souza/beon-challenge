@@ -27,6 +27,7 @@ function TableRow({ book, index }) {
       >
         <BookDetailsText
           onClick={onDetailsClick}
+          data-testid={`row-details-${index}`}
         >
           Detalhes
         </BookDetailsText>
