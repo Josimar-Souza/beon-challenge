@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import BooksAPI from '../../api/booksAPI';
+import Loading from '../../components/Loading';
 import {
   DetailsMainSection,
   InfoContainer,
@@ -23,16 +24,24 @@ function DetailsPage() {
     getBook();
   }, []);
 
+  if ('title' in book) {
+    return (
+      <DetailsMainSection>
+        <InfoContainer>
+          <BookTitle>{book.title}</BookTitle>
+          <BookInfo>{`Autor: ${book.author}`}</BookInfo>
+          <BookInfo>{`Pais: ${book.country}`}</BookInfo>
+          <BookInfo>{`Número de páginas: ${book.pages}`}</BookInfo>
+          <BookInfo>{`Ano de lançamento: ${book.year}`}</BookInfo>
+          <BookInfo>{`Idioma: ${book.language}`}</BookInfo>
+        </InfoContainer>
+      </DetailsMainSection>
+    );
+  }
+
   return (
     <DetailsMainSection>
-      <InfoContainer>
-        <BookTitle>{book.title}</BookTitle>
-        <BookInfo>{`Autor: ${book.author}`}</BookInfo>
-        <BookInfo>{`Pais: ${book.country}`}</BookInfo>
-        <BookInfo>{`Número de páginas: ${book.pages}`}</BookInfo>
-        <BookInfo>{`Ano de lançamento: ${book.year}`}</BookInfo>
-        <BookInfo>{`Idioma: ${book.language}`}</BookInfo>
-      </InfoContainer>
+      <Loading />
     </DetailsMainSection>
   );
 }
