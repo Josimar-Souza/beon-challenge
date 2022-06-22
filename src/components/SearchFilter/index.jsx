@@ -22,7 +22,7 @@ function SearchFilter(props) {
     <FilterContainer>
       <YearFilterContainer>
         <FilterText
-          data-testid="filter-paragraph"
+          data-testid="filter-paragraph-description"
         >
           Filtrar ano da publicação:
         </FilterText>
@@ -40,7 +40,11 @@ function SearchFilter(props) {
             data-testid="filter-input-icon"
           />
         </InputIconContainer>
-        <FilterText>até</FilterText>
+        <FilterText
+          data-testid="filter-paragraph-until"
+        >
+          até
+        </FilterText>
         <InputIconContainer>
           <FilterInput type="number" name="maxYear" onChange={onInputChange} value={maxYearValue} />
           <FilterIcon

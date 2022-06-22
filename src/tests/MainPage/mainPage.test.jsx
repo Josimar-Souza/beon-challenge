@@ -53,8 +53,9 @@ describe('Testes da página principal', () => {
         renderWithRouter(<pages.MainPage />);
       });
 
-      const paragraph = await screen.findByTestId('filter-paragraph');
+      const paragraph = await screen.findByTestId('filter-paragraph-description');
       expect(paragraph).toBeInTheDocument();
+      expect(paragraph.innerHTML).toBe('Filtrar ano da publicação:');
     });
 
     it('Um input para ano mínimo', async () => {
@@ -73,6 +74,16 @@ describe('Testes da página principal', () => {
 
       const inputIcons = await screen.findAllByTestId('filter-input-icon');
       expect(inputIcons.length).toBe(2);
+    });
+
+    it('Um parágrafo escrito "até"', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.MainPage />);
+      });
+
+      const paragraph = await screen.findByTestId('filter-paragraph-until');
+      expect(paragraph).toBeInTheDocument();
+      expect(paragraph.innerHTML).toBe('até');
     });
   });
 });
