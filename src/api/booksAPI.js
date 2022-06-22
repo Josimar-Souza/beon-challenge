@@ -8,7 +8,7 @@ class BooksAPI {
     });
   }
 
-  async getSeachedBooks(term, minYear = null, maxYear = null, page = 1, limit = 20) {
+  async getSeachedBooks(term, minYear = null, maxYear = null, page = 1, limit = 10) {
     if (minYear == null || maxYear == null) {
       const { data } = await this.http.get(`/books?q=${term}&_page=${page}&_limit=${limit}`);
       return data;
@@ -19,7 +19,7 @@ class BooksAPI {
     return data;
   }
 
-  async getAllBooksPerPage(page = 1, limit = 20) {
+  async getAllBooksPerPage(page = 1, limit = 10) {
     const { data } = await this.http.get(`/books?_page=${page}&_limit=${limit}`);
     return data;
   }

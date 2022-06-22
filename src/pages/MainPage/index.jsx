@@ -13,6 +13,7 @@ import {
 } from './mainPageStyles';
 
 const booksAPI = new BooksAPI('http://localhost:4000');
+const pageLimit = 10;
 
 function MainPage() {
   const [searchFilter, setSearchFilter] = useState({ term: '', minYear: '0', maxYear: '0' });
@@ -26,7 +27,7 @@ function MainPage() {
       const booksResultCount = await booksAPI.getSearchResultCount('');
       setResultCount(booksResultCount);
       setBooks(booksFetched);
-      setPageInfo({ ...pageInfo, numberOfPages: booksResultCount / 20 });
+      setPageInfo({ ...pageInfo, numberOfPages: booksResultCount / pageLimit });
     };
 
     getBooks();
@@ -44,7 +45,7 @@ function MainPage() {
       booksFetchedCount = await booksAPI.getSearchResultCount(`q=${searchFilter.term}`);
       setBooks(booksFetched);
       setResultCount(booksFetchedCount);
-      setPageInfo({ ...pageInfo, numberOfPages: Math.ceil(booksFetchedCount / 20) });
+      setPageInfo({ ...pageInfo, numberOfPages: Math.ceil(booksFetchedCount / pageLimit) });
       return;
     }
 
@@ -60,7 +61,7 @@ function MainPage() {
 
     setBooks(booksFetched);
     setResultCount(booksFetchedCount);
-    setPageInfo({ ...pageInfo, numberOfPages: Math.ceil(booksFetchedCount / 20) });
+    setPageInfo({ ...pageInfo, numberOfPages: Math.ceil(booksFetchedCount / pageLimit) });
   };
 
   const onPageButtonClick = async ({ target: { value } }) => {
