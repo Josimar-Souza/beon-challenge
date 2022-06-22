@@ -4,12 +4,14 @@ import BooksAPI from '../../api/booksAPI';
 import TableRow from '../../components/TableRow';
 import SearchFilter from '../../components/SearchFilter';
 import PageButton from '../../components/PageButton';
+import Loading from '../../components/Loading';
 import {
   MainSection,
   BooksTable,
   TableTitle,
   PagesContainer,
   PageCount,
+  LoadingContainer,
 } from './mainPageStyles';
 
 const booksAPI = new BooksAPI('http://localhost:4000', 10000);
@@ -61,7 +63,7 @@ function MainPage() {
 
     setBooks(booksFetched);
     setResultCount(booksFetchedCount);
-    setPageInfo({ ...pageInfo, numberOfPages: Math.ceil(booksFetchedCount / pageLimit) });
+    setPageInfo({ currPage: 1, numberOfPages: Math.ceil(booksFetchedCount / pageLimit) });
   };
 
   const onPageButtonClick = async ({ target: { value } }) => {
@@ -101,19 +103,16 @@ function MainPage() {
     return pages;
   };
 
-  return (
-    <MainSection>
-      <Header
-        onInputChange={onInputChange}
-        inputValue={searchFilter.term}
-        onSearchButtonClick={onSearchButtonClick}
-      />
-      <SearchFilter
-        booksCount={resultCount}
-        onInputChange={onInputChange}
-        minYearValue={searchFilter.minYear}
-        maxYearValue={searchFilter.maxYear}
-      />
+  const getTable = () => {
+    if (books.length <= 0) {
+      return (
+        <LoadingContainer>
+          <Loading />
+        </LoadingContainer>
+      );
+    }
+
+    return (
       <BooksTable>
         <tbody>
           <tr>
@@ -133,6 +132,23 @@ function MainPage() {
           }
         </tbody>
       </BooksTable>
+    );
+  };
+
+  return (
+    <MainSection>
+      <Header
+        onInputChange={onInputChange}
+        inputValue={searchFilter.term}
+        onSearchButtonClick={onSearchButtonClick}
+      />
+      <SearchFilter
+        booksCount={resultCount}
+        onInputChange={onInputChange}
+        minYearValue={searchFilter.minYear}
+        maxYearValue={searchFilter.maxYear}
+      />
+      { getTable() }
       <PageCount>{`Página atual: ${pageInfo.currPage}`}</PageCount>
       <PagesContainer>
         {

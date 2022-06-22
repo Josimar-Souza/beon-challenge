@@ -35,3 +35,11 @@ export const PageCount = styled.p`
   font-size: 1.5vw;
   margin-bottom: 15px;
 `;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 5rem 0;
+  max-width: 80%;
+  width: 100%;
+`;
