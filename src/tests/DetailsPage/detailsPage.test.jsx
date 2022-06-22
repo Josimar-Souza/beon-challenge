@@ -95,4 +95,24 @@ describe('Verifica a existência e informações de todos os elementos da págin
       expect(numberOfPages.innerHTML).toBe(`Número de páginas: ${singleBook[0].pages}`);
     });
   });
+
+  describe('O ano de lançamento', () => {
+    it('Verifica se existe o ano de lançamento', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.DetailsPage />);
+      });
+
+      const year = await screen.findByTestId('details-book-year');
+      expect(year).toBeInTheDocument();
+    });
+
+    it('Verifica se o ano de lançamento está correto', async () => {
+      await act(async () => {
+        renderWithRouter(<pages.DetailsPage />);
+      });
+
+      const year = await screen.findByTestId('details-book-year');
+      expect(year.innerHTML).toBe(`Ano de lançamento: ${singleBook[0].year}`);
+    });
+  });
 });
