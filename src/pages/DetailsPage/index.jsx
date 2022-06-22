@@ -10,7 +10,7 @@ import {
   BookLink,
 } from './detailsPageStyle';
 
-const booksAPI = new BooksAPI('http://localhost:4000', 10000);
+export const booksAPI = new BooksAPI('http://localhost:4000', 10000);
 
 function DetailsPage() {
   const { title } = useParams();
@@ -29,13 +29,45 @@ function DetailsPage() {
     return (
       <DetailsMainSection>
         <InfoContainer>
-          <BookTitle>{book.title}</BookTitle>
-          <BookInfo>{`Autor: ${book.author}`}</BookInfo>
-          <BookInfo>{`Pais: ${book.country}`}</BookInfo>
-          <BookInfo>{`Número de páginas: ${book.pages}`}</BookInfo>
-          <BookInfo>{`Ano de lançamento: ${book.year}`}</BookInfo>
-          <BookInfo>{`Idioma: ${book.language}`}</BookInfo>
-          <BookInfo><BookLink href={book.link} target="_blank">{book.link}</BookLink></BookInfo>
+          <BookTitle
+            data-testid="details-book-title"
+          >
+            {book.title}
+          </BookTitle>
+          <BookInfo
+            data-testid="details-book-author"
+          >
+            {`Autor: ${book.author}`}
+          </BookInfo>
+          <BookInfo
+            data-testid="details-book-country"
+          >
+            {`País: ${book.country}`}
+          </BookInfo>
+          <BookInfo
+            data-testid="details-book-pages"
+          >
+            {`Número de páginas: ${book.pages}`}
+          </BookInfo>
+          <BookInfo
+            data-testid="details-book-year"
+          >
+            {`Ano de lançamento: ${book.year}`}
+          </BookInfo>
+          <BookInfo
+            data-testid="details-book-language"
+          >
+            {`Idioma: ${book.language}`}
+          </BookInfo>
+          <BookInfo>
+            <BookLink
+              href={book.link}
+              target="_blank"
+              data-testid="details-book-link"
+            >
+              {book.link}
+            </BookLink>
+          </BookInfo>
         </InfoContainer>
       </DetailsMainSection>
     );
