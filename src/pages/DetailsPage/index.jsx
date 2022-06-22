@@ -59,7 +59,15 @@ function DetailsPage() {
           >
             {`Idioma: ${book.language}`}
           </BookInfo>
-          <BookInfo><BookLink href={book.link} target="_blank">{book.link}</BookLink></BookInfo>
+          <BookInfo>
+            <BookLink
+              href={book.link}
+              target="_blank"
+              data-testid="details-book-link"
+            >
+              {book.link}
+            </BookLink>
+          </BookInfo>
         </InfoContainer>
       </DetailsMainSection>
     );
