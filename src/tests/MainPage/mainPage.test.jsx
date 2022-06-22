@@ -11,12 +11,21 @@ describe('Verifica a existência dos elementos do header', () => {
     jest.spyOn(booksAPI, 'getSeachedBooks').mockResolvedValue([]);
   });
 
-  it('Um título escrito beon', async () => {
+  it('Um título escrito "beon"', async () => {
     await act(async () => {
       renderWithRouter(<pages.MainPage />);
     });
 
     const beonTitle = await screen.findByRole('heading', { name: 'beon' });
     expect(beonTitle).toBeInTheDocument();
+  });
+
+  it('Um botão escrito "buscar"', async () => {
+    await act(async () => {
+      renderWithRouter(<pages.MainPage />);
+    });
+
+    const searchButton = await screen.findByRole('button', { name: 'Buscar' });
+    expect(searchButton).toBeInTheDocument();
   });
 });
