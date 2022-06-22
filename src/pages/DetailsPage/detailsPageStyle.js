@@ -16,7 +16,20 @@ export const InfoContainer = styled.div`
   box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   max-width: 50%;
   padding: 10px;
   width: 100%;
+`;
+
+export const BookTitle = styled.h1`
+  font-size: 2.5vw;
+  margin-bottom: 10px;
+  text-decoration: underline;
+`;
+
+export const BookInfo = styled.p`
+  font-size: 1.5vw;
+  font-weight: 600;
+  margin: 10px 0;
 `;
