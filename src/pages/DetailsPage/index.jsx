@@ -10,7 +10,7 @@ import {
   BookLink,
 } from './detailsPageStyle';
 
-const booksAPI = new BooksAPI('http://localhost:4000', 10000);
+export const booksAPI = new BooksAPI('http://localhost:4000', 10000);
 
 function DetailsPage() {
   const { title } = useParams();
@@ -29,7 +29,11 @@ function DetailsPage() {
     return (
       <DetailsMainSection>
         <InfoContainer>
-          <BookTitle>{book.title}</BookTitle>
+          <BookTitle
+            data-testid="details-book-title"
+          >
+            {book.title}
+          </BookTitle>
           <BookInfo>{`Autor: ${book.author}`}</BookInfo>
           <BookInfo>{`Pais: ${book.country}`}</BookInfo>
           <BookInfo>{`Número de páginas: ${book.pages}`}</BookInfo>
