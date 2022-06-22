@@ -7,6 +7,7 @@ function App() {
     <Routes>
       <Route exact path="/" element={<Navigate to="/books" />} />
       <Route exact path="/books" element={<pages.MainPage />} />
+      <Route exact path="/books/details/:title" element={<pages.DetailsPage />} />
     </Routes>
   );
 }
