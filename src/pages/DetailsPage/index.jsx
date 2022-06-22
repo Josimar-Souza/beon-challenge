@@ -4,7 +4,7 @@ import DetailsMainSection from './detailsPageStyle';
 function DetailsPage() {
   return (
     <DetailsMainSection>
-      <h1>Details Pàge</h1>
+      <h1>Details Page</h1>
     </DetailsMainSection>
   );
 }
