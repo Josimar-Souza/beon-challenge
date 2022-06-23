@@ -16,7 +16,7 @@
 <p>Feito isso siga os passos a seguir:</p>
 <ol>
   <li>Primeiro clone o repositório para sua máquina utilizando <code>git clone</code>.</li>
-  <li>Entre no diretório do repósitorio e rode o comando <code>npm install</code> para instalar todas as dependências to projeto.</li>
+  <li>Entre no diretório do repositório e rode o comando <code>npm install</code> para instalar todas as dependências to projeto.</li>
   <li>Por fim, rode o comando <code>npm start</code>.</li>
 </ol>
 <p>Depois de seguir os passos, o projeto deve abrir em seu navegador!</p>
