@@ -11,7 +11,7 @@
 <hr />
 
 <h2>Rodando o projeto localmente:</h2>
-<p>Para rodar esse projeto localmente, primeiro é necessário ter a api de livros rodando localmente, para isso visite o repositório <a href="https://github.com/Josimar-Souza/beonjsonserver" target="_blank">beon json server</a> e siga as instruções do redme para rodar a api localmente.<p/>
+<p>Para rodar esse projeto localmente, primeiro é necessário ter a api de livros rodando localmente, para isso visite o repositório <a href="https://github.com/Josimar-Souza/beonjsonserver" target="_blank">beon json server</a> e siga as instruções do readme para rodar a api localmente.<p/>
 <p>Tenha em mente que também é necessário ter o <code>node.js</code> instalado em seu computador, se ainda não tiver visite o site do <a href="https://nodejs.org/en/" target="_blank">node</a>, baixe e instale!</p>
 <p>Feito isso siga os passos a seguir:</p>
 <ol>
