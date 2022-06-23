@@ -26,7 +26,7 @@
 <h2>Rodando os testes:</h2>
 <p>O projeto também contém testes criados com a biblioteca <a href="https://testing-library.com/docs/react-testing-library/intro/" target="_blank">React testing library</a>.</p>
 <p>Todos os testes se encontram no cominho <code>/src/tests</code></p>
-<p>Para rodar os testes localmente você precisa ter instalado todas as dependências do projeto como mostrado anteriormente, depois disso basta rodar um dos comandos abaixo</p>
+<p>Para rodar os testes localmente você precisa ter instalado todas as dependências do projeto como mostrado anteriormente, depois disso basta rodar um dos comandos abaixo:</p>
 <p>Para rodar todos os teste utilize o comando: <code>npm test</code></p>
 <p>Para rodar um teste específico utilize o comando: <code>npm test {nome do arquivo de teste}</code></p>
 
